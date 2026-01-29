@@ -30,8 +30,15 @@ import './actions/consultancy.actions'
 import { getTodayDate } from "../support/utils"
 
 Cypress.Commands.add('start', () => {
-   // cy.viewport(1440, 900) // --Notbook HD // incluimos a configuração no cypress.config // apenas é necessário em algum teste que for validar alguma resolução diferente
+    // cy.viewport(1440, 900) // --Notbook HD // incluimos a configuração no cypress.config // apenas é necessário em algum teste que for validar alguma resolução diferente
     cy.visit('/')
+})
+
+Cypress.Commands.add('goToSignup', () => {
+    cy.start()
+    cy.get('a[href="/register"]').click()
+    cy.contains('h2', 'Crie sua conta')
+        .should('be.visible')
 })
 
 Cypress.Commands.add('submitLoginForm', (email, password) => {
